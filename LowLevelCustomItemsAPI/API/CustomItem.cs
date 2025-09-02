@@ -33,11 +33,9 @@ public abstract class CustomItem
 	/// Provides a default instance of the custom item to the specified player.
 	/// </summary>
 	/// <param name="player">The player receiving the item.</param>
-	/// <param name="args">Additional arguments provided for item creation.
-	/// These are passed into the method through the CustomItems command.</param>
 	/// <param name="data">Optional additional data to store with the item.</param>
 	/// <returns>The item that was created for the player.</returns>
-	public abstract Item GiveDefault(Player player, ArraySegment<string> args, object? data);
+	public abstract Item GiveDefault(Player player, object? data);
 
 	/// <summary>
 	/// A collection of serials that are registered to the custom item.

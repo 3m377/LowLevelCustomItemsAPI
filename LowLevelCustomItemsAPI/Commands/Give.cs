@@ -11,7 +11,7 @@ public class Give : ICommand
 	public string Command => "give";
 	public string[] Aliases => ["g"];
 	public string Description => "Gives a custom item.";
-	private const string USAGE = "cui give (item) (args) ?(player)"; // I don't know how to use IUsageProvider :(
+	private const string USAGE = "cui give (item) ?(player)"; // I don't know how to use IUsageProvider :(
 
 	public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 	{
@@ -30,32 +30,28 @@ public class Give : ICommand
 		string itemName;
 		Player player;
 
-		// Parse item name, additional arguments, and player
-		ArraySegment<string> itemArgs;
+		// Parse item name and player
 		if (arguments.Count >= 2)
 		{
-			string potentialPlayer = arguments.Last();
-			if (Utils.TryGetPlayer(potentialPlayer, out player))
-			{
-				itemName = arguments.First();
-				itemArgs = new ArraySegment<string>(arguments.ToArray(), arguments.Offset + 1, arguments.Count - 2);
-			}
+			if (Utils.TryGetPlayer(arguments.Last(), out player))
+				itemName = string.Join(" ", arguments.Take(arguments.Count - 1));
 			else
 			{
-				itemName = arguments.First();
-				itemArgs = new ArraySegment<string>(arguments.ToArray(), arguments.Offset + 1, arguments.Count - 1);
+				itemName = string.Join(" ", arguments);
 				player = Player.Get(sender)!;
 			}
 		}
 		else
 		{
 			itemName = arguments.First();
-			itemArgs = [];
 			player = Player.Get(sender)!;
 		}
 
-		CustomItem handler = CustomItemManager.Items.Values.Select(dict => dict.Values).SelectMany(list => list).FirstOrDefault(
-			item => Enumerable.Contains(item.Identifiers, itemName.ToLower()));
+		CustomItem handler = CustomItemManager.Items.Values.Select(dict => dict.Values).SelectMany(list => list)
+											  .FirstOrDefault(item =>
+												  string.Equals(item.Name, itemName,
+													  StringComparison.CurrentCultureIgnoreCase) ||
+												  Enumerable.Contains(item.Identifiers, itemName.ToLower()));
 
 		if (handler == null)
 		{
@@ -70,7 +66,7 @@ public class Give : ICommand
 			return false;
 		}
 
-		handler.GiveDefault(player, itemArgs, null);
+		handler.GiveDefault(player, null);
 
 		response = $"<color=green>You gave {player.Nickname} a {handler.Name}";
 		return true;

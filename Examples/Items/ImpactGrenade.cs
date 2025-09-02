@@ -43,7 +43,7 @@ public class ImpactGrenade : CustomItem
 		ev.Projectile.Base.gameObject.AddComponent<ImpactGrenadeHandler>().Init(ev.Player, timedGrenade);
 	}
 
-	public override Item GiveDefault(Player player, ArraySegment<string> args, object data)
+	public override Item GiveDefault(Player player, object data)
 	{
 		Item item = player.AddItem(ItemType.GrenadeHE)!;
 		Register(item.Serial);

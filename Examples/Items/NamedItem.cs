@@ -29,22 +29,16 @@ public class NamedItem : CustomItem<string>
 			ev.Player.SendHint(name, 4f);
 	}
 
-	public override Item GiveDefault(Player player, ArraySegment<string> args, object data)
+	public override Item GiveDefault(Player player, object data)
 	{
-		string name = "Custom Item";
-		ItemType type = ItemType.Coin;
-		switch (args.Count)
-		{
-			case 1:
-				if (Enum.TryParse(args.At(0), true, out type))
-					break;
-				name = args.At(0);
-				break;
-			case >= 2:
-				name = string.Join(" ", Enum.TryParse(args.At(0), true, out type) ? args : args.Skip(1));
-				break;
-		}
-		Item item = player.AddItem(type)!;
+		Item item = player.AddItem(ItemType.Coin)!;
+		Register(item.Serial, "Custom Item");
+		return item;
+	}
+
+	public Item GiveItem(Player player, ItemType itemType, string name)
+	{
+		Item item = player.AddItem(itemType)!;
 		Register(item.Serial, name);
 		return item;
 	}
