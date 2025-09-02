@@ -3,8 +3,11 @@
 namespace LowLevelCustomItemsAPI.API;
 
 using System.Reflection;
+#if EXILED
+using ServerEvents = Exiled.Events.Handlers.Server;
+#else
 using LabApi.Events.Handlers;
-using LabApi.Features.Console;
+#endif
 
 /// <summary>
 /// Provides functionality for managing custom items, including registration, retrieval, and validation of item instances.
@@ -57,7 +60,7 @@ public static class CustomItemManager
 		}
 		catch (Exception ex)
 		{
-			Logger.Error($"Error while registering items: {ex}");
+			Log.Error($"Error while registering items: {ex}");
 			return false;
 		}
 	}
