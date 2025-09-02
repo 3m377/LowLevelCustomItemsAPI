@@ -1,8 +1,12 @@
 #nullable enable
 
 namespace LowLevelCustomItemsAPI.API;
-
+#if EXILED
+using Exiled.API.Features;
+using Exiled.API.Features.Items;
+#else
 using LabApi.Features.Wrappers;
+#endif
 
 /// <summary>
 /// The base class for custom items.

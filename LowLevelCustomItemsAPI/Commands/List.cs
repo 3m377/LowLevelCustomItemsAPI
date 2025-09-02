@@ -2,7 +2,7 @@
 
 using API;
 using CommandSystem;
-using LabApi.Features.Permissions;
+using Internal;
 
 public class List : ICommand
 {
@@ -13,11 +13,8 @@ public class List : ICommand
 
 	public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 	{
-		if (!sender.HasAnyPermission("llci.customitems"))
-		{
-			response = "You do not have permission to use this command.";
+		if (!sender.HasPermission("llci.customitems", out response))
 			return false;
-		}
 
 		if (!CustomItemManager.Items.Values.Select(dict => dict.Values).SelectMany(list => list).Any())
 		{

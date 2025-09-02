@@ -1,7 +1,7 @@
 ﻿namespace LowLevelCustomItemsAPI.Commands;
 
 using CommandSystem;
-using LabApi.Features.Permissions;
+using Internal;
 
 [CommandHandler(typeof(RemoteAdminCommandHandler))]
 public class CustomItemCommand : ParentCommand
@@ -20,11 +20,8 @@ public class CustomItemCommand : ParentCommand
 
 	protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
 	{
-		if (!sender.HasAnyPermission("llci.customitems"))
-		{
-			response = "You do not have permission to use this command.";
+		if (!sender.HasPermission("llci.customitems", out response))
 			return false;
-		}
 
 		response = "Please enter a valid subcommand:\n";
 		int i = 0;

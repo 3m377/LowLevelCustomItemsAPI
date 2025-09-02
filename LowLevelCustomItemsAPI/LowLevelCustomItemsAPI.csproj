@@ -10,9 +10,14 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <DebugType>embedded</DebugType>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Configurations>Debug;Release;EXILED</Configurations>
+        <AssemblyName Condition="'$(Configuration)'=='Release'">LowLevelCustomItemsAPI.LabAPI</AssemblyName>
+        <AssemblyName Condition="'$(Configuration)'=='EXILED'">LowLevelCustomItemsAPI.EXILED</AssemblyName>
+        <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="ExMod.Exiled" Version="9.8.1" />
         <PackageReference Include="Lib.Harmony" Version="2.3.6" />
         <PackageReference Include="Northwood.LabAPI" Version="1.1.1" />
     </ItemGroup>

@@ -1,5 +1,5 @@
-# LLCI - A Low-Level Custom Items API for LabAPI
-A powerful and flexible low-level API for creating custom items using LabAPI.
+# LLCI - A Low-Level Custom Items API for LabAPI or EXILED
+A powerful and flexible low-level API for creating custom items using LabAPI or EXILED.
 
 ## Features
  - Direct access to item mechanics without high-level abstractions
@@ -14,7 +14,7 @@ A powerful and flexible low-level API for creating custom items using LabAPI.
 
 ### Installation
 1. Download the latest release from the [Releases](https://github.com/3m377/LowLevelCustomItemsAPI/releases) page.
-2. Place the DLL in your `LabAPI/Plugins` folder.
+2. Place the DLL in your preferred plugin manager's `Plugins` folder.
 3. Reference the DLL in your plugin. (nuget coming never idk how to do that)
 
 ### Permissions

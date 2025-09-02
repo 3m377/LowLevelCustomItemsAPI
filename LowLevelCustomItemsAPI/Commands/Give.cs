@@ -3,8 +3,11 @@
 using API;
 using CommandSystem;
 using Internal;
-using LabApi.Features.Permissions;
+#if EXILED
+using Exiled.API.Features;
+#else
 using LabApi.Features.Wrappers;
+#endif
 
 public class Give : ICommand
 {
@@ -15,11 +18,8 @@ public class Give : ICommand
 
 	public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 	{
-		if (!sender.HasAnyPermission("llci.customitems"))
-		{
-			response = "You do not have permission to use this command.";
+		if (!sender.HasPermission("llci.customitems", out response))
 			return false;
-		}
 
 		if (arguments.Count < 1)
 		{
