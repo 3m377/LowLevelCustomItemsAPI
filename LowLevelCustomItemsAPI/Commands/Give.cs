@@ -1,52 +1,61 @@
-﻿namespace Core.Commands.CustomItems;
+﻿namespace LowLevelCustomItemsAPI.Commands;
 
-using API.CustomItems;
-using API.Extensions;
-using API.Interfaces;
+using API;
 using CommandSystem;
+using Internal;
+using LabApi.Features.Permissions;
 using LabApi.Features.Wrappers;
 
-public class Give : ICommand, IUsageHelper
+public class Give : ICommand
 {
 	public string Command => "give";
 	public string[] Aliases => ["g"];
 	public string Description => "Gives a custom item.";
-	public string Usage => "cui give (item) ?(player)";
+	private const string USAGE = "cui give (item) (args) ?(player)"; // I don't know how to use IUsageProvider :(
 
 	public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 	{
-		if (!sender.CheckRemoteAdmin(out response))
+		if (!sender.HasAnyPermission("llci.customitems"))
+		{
+			response = "You do not have permission to use this command.";
 			return false;
+		}
 
 		if (arguments.Count < 1)
 		{
-			response = $"Invalid syntax! Usage: {Usage}";
+			response = $"Invalid syntax! Usage: {USAGE}";
 			return false;
 		}
 
 		string itemName;
 		Player player;
 
-		// Parse item name and player
+		// Parse item name, additional arguments, and player
+		ArraySegment<string> itemArgs;
 		if (arguments.Count >= 2)
 		{
 			string potentialPlayer = arguments.Last();
-			if (Player.TryGet(potentialPlayer, out player))
-				itemName = string.Join(" ", arguments.Take(arguments.Count - 1));
+			if (Utils.TryGetPlayer(potentialPlayer, out player))
+			{
+				itemName = arguments.First();
+				itemArgs = new ArraySegment<string>(arguments.ToArray(), arguments.Offset + 1, arguments.Count - 2);
+			}
 			else
 			{
-				itemName = string.Join(" ", arguments);
+				itemName = arguments.First();
+				itemArgs = new ArraySegment<string>(arguments.ToArray(), arguments.Offset + 1, arguments.Count - 1);
 				player = Player.Get(sender)!;
 			}
 		}
 		else
 		{
 			itemName = arguments.First();
+			itemArgs = [];
 			player = Player.Get(sender)!;
 		}
 
 		CustomItem handler = CustomItemManager.Items.Values.Select(dict => dict.Values).SelectMany(list => list).FirstOrDefault(
-			item => string.Equals(item.Name, itemName, StringComparison.CurrentCultureIgnoreCase) || Enumerable.Contains(item.Identifiers, itemName.ToLower()));
+			item => Enumerable.Contains(item.Identifiers, itemName.ToLower()));
 
 		if (handler == null)
 		{
@@ -61,7 +70,7 @@ public class Give : ICommand, IUsageHelper
 			return false;
 		}
 
-		handler.GiveDefault(player, [], null);
+		handler.GiveDefault(player, itemArgs, null);
 
 		response = $"<color=green>You gave {player.Nickname} a {handler.Name}";
 		return true;

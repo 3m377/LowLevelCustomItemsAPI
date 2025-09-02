@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LowLevelCustomItemsAPI", "LowLevelCustomItemsAPI\LowLevelCustomItemsAPI.csproj", "{D11552DF-A218-4E4F-98A8-A98E12078F69}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{77A51040-DCA0-4FAB-BB6A-07BA74E1CCA0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{D11552DF-A218-4E4F-98A8-A98E12078F69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D11552DF-A218-4E4F-98A8-A98E12078F69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D11552DF-A218-4E4F-98A8-A98E12078F69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77A51040-DCA0-4FAB-BB6A-07BA74E1CCA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77A51040-DCA0-4FAB-BB6A-07BA74E1CCA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77A51040-DCA0-4FAB-BB6A-07BA74E1CCA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77A51040-DCA0-4FAB-BB6A-07BA74E1CCA0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

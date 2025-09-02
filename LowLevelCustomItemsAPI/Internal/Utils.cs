@@ -2,7 +2,7 @@
 
 using LabApi.Features.Wrappers;
 
-internal static class Extensions
+internal static class Utils
 {
 	internal static bool TryGetPlayer(object obj, out Player player)
 	{

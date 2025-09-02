@@ -26,4 +26,8 @@
         <Reference Include="UnityEngine.PhysicsModule" HintPath="$(SL_REFERENCES)\UnityEngine.PhysicsModule.dll" Private="False" />
         <Reference Include="UnityEngine.AudioModule" HintPath="$(SL_REFERENCES)\UnityEngine.AudioModule.dll" Private="False" />
     </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\LowLevelCustomItemsAPI\LowLevelCustomItemsAPI.csproj" />
+    </ItemGroup>
 </Project>

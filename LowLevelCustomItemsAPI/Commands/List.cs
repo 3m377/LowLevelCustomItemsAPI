@@ -1,21 +1,23 @@
-﻿namespace Core.Commands.CustomItems;
+﻿namespace LowLevelCustomItemsAPI.Commands;
 
-using API.CustomItems;
-using API.Extensions;
-using API.Interfaces;
+using API;
 using CommandSystem;
+using LabApi.Features.Permissions;
 
-public class List : ICommand, IUsageHelper
+public class List : ICommand
 {
 	public string Command => "list";
 	public string[] Aliases => ["l"];
 	public string Description => "Lists all custom items.";
-	public string Usage => "cui list";
+	private const string USAGE = "cui list"; // I don't know how to use IUsageProvider :(
 
 	public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
 	{
-		if (!sender.CheckRemoteAdmin(out response))
+		if (!sender.HasAnyPermission("llci.customitems"))
+		{
+			response = "You do not have permission to use this command.";
 			return false;
+		}
 
 		if (!CustomItemManager.Items.Values.Select(dict => dict.Values).SelectMany(list => list).Any())
 		{
@@ -25,7 +27,7 @@ public class List : ICommand, IUsageHelper
 
 		if (arguments.Count != 0)
 		{
-			response = $"Invalid syntax! Usage: {Usage}";
+			response = $"Invalid syntax! Usage: {USAGE}";
 			return false;
 		}
 

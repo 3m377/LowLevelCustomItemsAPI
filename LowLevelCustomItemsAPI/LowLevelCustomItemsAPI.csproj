@@ -1,54 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
-            Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
+<!--
+  This project relies on the following system environment variables:
+  - SL_REFERENCES: Path to SCP:SL Dedicated Server "SCPSL_Data\Managed" folder
+  Ensure these are set correctly in your system environment variables.
+-->
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-        <ProjectGuid>{D11552DF-A218-4E4F-98A8-A98E12078F69}</ProjectGuid>
-        <OutputType>Library</OutputType>
-        <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>LowLevelCustomItemsAPI</RootNamespace>
-        <AssemblyName>LowLevelCustomItemsAPI</AssemblyName>
-        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-        <FileAlignment>512</FileAlignment>
+        <TargetFramework>net48</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DebugType>embedded</DebugType>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugSymbols>true</DebugSymbols>
-        <DebugType>full</DebugType>
-        <Optimize>false</Optimize>
-        <OutputPath>bin\Debug\</OutputPath>
-        <DefineConstants>DEBUG;TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-        <PlatformTarget>AnyCPU</PlatformTarget>
-        <DebugType>pdbonly</DebugType>
-        <Optimize>true</Optimize>
-        <OutputPath>bin\Release\</OutputPath>
-        <DefineConstants>TRACE</DefineConstants>
-        <ErrorReport>prompt</ErrorReport>
-        <WarningLevel>4</WarningLevel>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="System"/>
-        <Reference Include="System.Core"/>
-        <Reference Include="System.Data"/>
-        <Reference Include="System.Xml"/>
-    </ItemGroup>
-    <ItemGroup>
-        <Compile Include="Class1.cs"/>
-        <Compile Include="Properties\AssemblyInfo.cs"/>
-    </ItemGroup>
-    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
-    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-         Other similar extension points exist, see Microsoft.Common.targets.
-    <Target Name="BeforeBuild">
-    </Target>
-    <Target Name="AfterBuild">
-    </Target>
-    -->
 
+    <ItemGroup>
+        <PackageReference Include="Lib.Harmony" Version="2.3.6" />
+        <PackageReference Include="Northwood.LabAPI" Version="1.1.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Assembly-CSharp" HintPath="$(SL_REFERENCES)\Assembly-CSharp-Publicized.dll" Private="False" />
+        <Reference Include="Assembly-CSharp-firstpass" HintPath="$(SL_REFERENCES)\Assembly-CSharp-firstpass.dll" Private="False" />
+        <Reference Include="CommandSystem.Core" HintPath="$(SL_REFERENCES)\CommandSystem.Core.dll" Private="False" />
+        <Reference Include="Mirror" HintPath="$(SL_REFERENCES)\Mirror-Publicized.dll" Private="False" />
+        <Reference Include="UnityEngine.CoreModule" HintPath="$(SL_REFERENCES)\UnityEngine.CoreModule.dll" Private="False" />
+        <Reference Include="UnityEngine.PhysicsModule" HintPath="$(SL_REFERENCES)\UnityEngine.PhysicsModule.dll" Private="False" />
+        <Reference Include="UnityEngine.AudioModule" HintPath="$(SL_REFERENCES)\UnityEngine.AudioModule.dll" Private="False" />
+    </ItemGroup>
 </Project>
