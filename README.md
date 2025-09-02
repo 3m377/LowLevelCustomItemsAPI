@@ -4,7 +4,7 @@ A powerful and flexible low-level API for creating custom items using LabAPI.
 ## Features
  - Direct access to item mechanics without high-level abstractions
  - Support for associating custom data with items using generics
- - Built-in commands for managing custom items
+ - Built-in commands for giving custom items
  - Support for both simple and complex custom item implementations
 
 ### Dependencies
