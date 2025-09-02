@@ -4,14 +4,11 @@ using LabApi.Features.Wrappers;
 
 internal static class Utils
 {
-	internal static bool TryGetPlayer(object obj, out Player player)
+	internal static bool TryGetPlayer(string str, out Player player)
 	{
 		player = null;
-		return obj switch
-		{
-			string userId => Player.TryGet(userId, out player),
-			int id => Player.TryGet(id, out player),
-			_ => false
-		};
+		if (Player.TryGet(str, out player))
+			return true;
+		return int.TryParse(str, out int id) && Player.TryGet(id, out player);
 	}
 }
