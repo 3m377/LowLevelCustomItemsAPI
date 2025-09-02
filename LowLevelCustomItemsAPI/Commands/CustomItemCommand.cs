@@ -31,8 +31,8 @@ public class CustomItemCommand : ParentCommand
 		foreach (ICommand command in AllCommands)
 		{
 			i++;
-			response += $"{i}.\t{command.Command}\n";
-			response += $"\t{command.Description}\n\n";
+			response += $"{i}. {command.Command}\n";
+			response += $"   {command.Description}\n\n";
 		}
 		return false;
 	}
