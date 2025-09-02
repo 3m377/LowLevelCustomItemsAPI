@@ -17,6 +17,10 @@ A powerful and flexible low-level API for creating custom items using LabAPI.
 2. Place the DLL in your `LabAPI/Plugins` folder.
 3. Reference the DLL in your plugin. (nuget coming never idk how to do that)
 
+### Permissions
+This plugin has one permission:
+ - `llci.customitems`: Allows the player to use the `customitems` command/subcommands (ci give, ci list)
+
 ### Using the API
 1. **Register your items** in your plugin's `OnEnabled` method:
 ```csharp
