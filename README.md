@@ -13,7 +13,7 @@ A powerful and flexible low-level API for creating custom items using LabAPI or 
 ## Quick Start
 
 ### Installation
-1. Download the latest release from the [Releases](https://github.com/3m377/LowLevelCustomItemsAPI/releases) page.
+1. Download the [Latest Release](https://github.com/3m377/LowLevelCustomItemsAPI/releases/latest).
 2. Place the DLL in your preferred plugin manager's `Plugins` folder.
 3. Reference the DLL in your plugin. (nuget coming never idk how to do that)
 
