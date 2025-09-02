@@ -1,4 +1,4 @@
-﻿namespace Examples;
+﻿namespace Examples.Items;
 
 using LabApi.Events.Arguments.PlayerEvents;
 using LabApi.Events.Handlers;

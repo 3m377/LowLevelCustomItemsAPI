@@ -1,6 +1,7 @@
 ﻿namespace Examples.Commands;
 
 using CommandSystem;
+using Items;
 using LabApi.Features.Permissions;
 using LabApi.Features.Wrappers;
 using LowLevelCustomItemsAPI.API;
