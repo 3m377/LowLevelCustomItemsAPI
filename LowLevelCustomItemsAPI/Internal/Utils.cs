@@ -27,9 +27,9 @@ internal static class Utils
 	{
 		response = "You do not have permission to use this command.";
 #if EXILED
-		return sender.CheckPermission("llci.customitems");
+		return sender.CheckPermission(permission);
 #else
-		return sender.HasAnyPermission("llci.customitems");
+		return sender.HasAnyPermission(permission);
 #endif
 	}
 }
