@@ -78,4 +78,4 @@ Copyright (c) 2025 3m377
  - Me!!!
 
 ## Support
- - **Issues**: [GitHub Issues](https://github.com/your-repo/issues)
+ - **Issues**: [GitHub Issues](https://github.com/3m377/LowLevelCustomItemsAPI/issues)
