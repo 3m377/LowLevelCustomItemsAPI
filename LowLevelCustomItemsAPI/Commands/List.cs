@@ -16,7 +16,7 @@ public class List : ICommand
 		if (!sender.HasPermission("llci.customitems", out response))
 			return false;
 
-		if (!CustomItemManager.Items.Values.Select(dict => dict.Values).SelectMany(list => list).Any())
+		if (!CustomItem.Items.Values.Select(dict => dict.Values).SelectMany(list => list).Any())
 		{
 			response = "No custom items found.";
 			return false;
@@ -28,7 +28,7 @@ public class List : ICommand
 			return false;
 		}
 
-		response = CustomItemManager.Items.Values.Select(dict => dict.Values).SelectMany(list => list).Aggregate("Custom Items:\n",
+		response = CustomItem.Items.Values.Select(dict => dict.Values).SelectMany(list => list).Aggregate("Custom Items:\n",
 			(current, handler) => current + $"- {handler.Name} {(handler.Identifiers.Length != 0 ? "(" : "") + string.Join(", ", handler.Identifiers) + (handler.Identifiers.Length != 0 ? ")" : "")}\n");
 		return true;
 	}

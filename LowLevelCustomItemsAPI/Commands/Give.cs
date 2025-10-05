@@ -47,7 +47,7 @@ public class Give : ICommand
 			player = Player.Get(sender)!;
 		}
 
-		CustomItem handler = CustomItemManager.Items.Values.Select(dict => dict.Values).SelectMany(list => list)
+		CustomItem handler = CustomItem.Items.Values.Select(dict => dict.Values).SelectMany(list => list)
 											  .FirstOrDefault(item =>
 												  string.Equals(item.Name, itemName,
 													  StringComparison.CurrentCultureIgnoreCase) ||
@@ -55,7 +55,7 @@ public class Give : ICommand
 
 		if (handler == null)
 		{
-			response = CustomItemManager.Items.Values.Select(dict => dict.Values).SelectMany(list => list).Aggregate("Custom Items:\n",
+			response = CustomItem.Items.Values.Select(dict => dict.Values).SelectMany(list => list).Aggregate("Custom Items:\n",
 				(current, handler2) => current + $"- {handler2.Name} {(handler2.Identifiers.Length != 0 ? "(" : "") + string.Join(", ", handler2.Identifiers) + (handler2.Identifiers.Length != 0 ? ")" : "")}\n");
 			return false;
 		}

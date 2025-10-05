@@ -37,7 +37,7 @@ public class CreateCustomItem : ICommand
 		Player player = Player.Get(sender)!;
 		string name = string.Join(" ", arguments.Skip(1));
 
-		CustomItemManager.Get<NamedItem>()!.GiveItem(player, itemType, name);
+		CustomItem.Get<NamedItem>()!.GiveItem(player, itemType, name);
 
 		response = "Done!";
 		return true;

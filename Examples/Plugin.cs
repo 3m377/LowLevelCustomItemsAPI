@@ -13,11 +13,11 @@ public class Plugin : LabApi.Loader.Features.Plugins.Plugin
 
 	public override void Enable()
 	{
-		CustomItemManager.TryRegisterItems();
+		CustomItem.TryRegisterItems();
 	}
 
 	public override void Disable()
 	{
-		CustomItemManager.UnregisterItems();
+		CustomItem.UnregisterItems();
 	}
 }
