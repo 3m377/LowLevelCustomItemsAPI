@@ -39,7 +39,7 @@ public class Plugin : LabApi.Loader.Features.Plugins.Plugin
 	public override void Enable()
 #endif
 	{
-		CustomItemManager.Initialize();
+		CustomItem.Initialize();
 	}
 
 #if EXILED
@@ -48,6 +48,6 @@ public class Plugin : LabApi.Loader.Features.Plugins.Plugin
 	public override void Disable()
 #endif
 	{
-		CustomItemManager.Uninitialize();
+		CustomItem.Uninitialize();
 	}
 }
