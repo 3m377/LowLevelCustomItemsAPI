@@ -14,6 +14,7 @@
         <AssemblyName Condition="'$(Configuration)'=='Release'">LowLevelCustomItemsAPI.LabAPI</AssemblyName>
         <AssemblyName Condition="'$(Configuration)'=='EXILED'">LowLevelCustomItemsAPI.EXILED</AssemblyName>
         <Platforms>AnyCPU</Platforms>
+        <NoStdLib>true</NoStdLib>
     </PropertyGroup>
 
     <ItemGroup>
@@ -24,6 +25,9 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Reference Include="mscorlib" HintPath="$(SL_REFERENCES)\mscorlib.dll" Private="False" Publicize="True">
+            <Aliases>global,sl_mscorlib</Aliases>
+        </Reference>
         <Reference Include="Assembly-CSharp" HintPath="$(SL_REFERENCES)\Assembly-CSharp.dll" Private="False" Publicize="True" />
         <Reference Include="Assembly-CSharp-firstpass" HintPath="$(SL_REFERENCES)\Assembly-CSharp-firstpass.dll" Private="False" />
         <Reference Include="CommandSystem.Core" HintPath="$(SL_REFERENCES)\CommandSystem.Core.dll" Private="False" />
