@@ -1,4 +1,7 @@
 # LLCI - A Low-Level Custom Items API for LabAPI or EXILED
+
+![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/3m377/LowLevelCustomItemsAPI/total?color=pink)
+
 A powerful and flexible low-level API for creating custom items using LabAPI or EXILED.
 
 ## Features
