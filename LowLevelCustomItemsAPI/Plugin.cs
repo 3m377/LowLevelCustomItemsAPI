@@ -31,7 +31,7 @@ public class Plugin : LabApi.Loader.Features.Plugins.Plugin
 	public override Version RequiredApiVersion => LabApiProperties.CurrentVersion;
 #endif
 	public override string Author => "3m377";
-	public override Version Version => new(1, 1, 0);
+	public override Version Version => new(1, 1, 1);
 
 #if EXILED
 	public override void OnEnabled()
