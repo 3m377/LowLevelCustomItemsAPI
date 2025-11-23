@@ -11,10 +11,10 @@
         <DebugType>embedded</DebugType>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Configurations>Debug;Release;EXILED;Release-NoCommands;EXILED-NoCommands</Configurations>
-        <AssemblyName Condition="'$(Configuration)'=='Release'">LowLevelCustomItemsAPI.LabAPI</AssemblyName>
-        <AssemblyName Condition="'$(Configuration)'=='EXILED'">LowLevelCustomItemsAPI.EXILED</AssemblyName>
-        <AssemblyName Condition="'$(Configuration)'=='Release-NoCommands'">LowLevelCustomItemsAPI.LabAPI-NoCommands</AssemblyName>
-        <AssemblyName Condition="'$(Configuration)'=='EXILED-NoCommands'">LowLevelCustomItemsAPI.EXILED-NoCommands</AssemblyName>
+        <AssemblyName Condition="'$(Configuration)'=='Release'">LLCI.LabAPI</AssemblyName>
+        <AssemblyName Condition="'$(Configuration)'=='EXILED'">LLCI.EXILED</AssemblyName>
+        <AssemblyName Condition="'$(Configuration)'=='Release-NoCommands'">LLCI.LabAPI-NoCommands</AssemblyName>
+        <AssemblyName Condition="'$(Configuration)'=='EXILED-NoCommands'">LLCI.EXILED-NoCommands</AssemblyName>
         <Platforms>AnyCPU</Platforms>
         <NoStdLib>true</NoStdLib>
     </PropertyGroup>
