@@ -10,9 +10,11 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <DebugType>embedded</DebugType>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <Configurations>Debug;Release;EXILED</Configurations>
+        <Configurations>Debug;Release;EXILED;Release-NoCommands;EXILED-NoCommands</Configurations>
         <AssemblyName Condition="'$(Configuration)'=='Release'">LowLevelCustomItemsAPI.LabAPI</AssemblyName>
         <AssemblyName Condition="'$(Configuration)'=='EXILED'">LowLevelCustomItemsAPI.EXILED</AssemblyName>
+        <AssemblyName Condition="'$(Configuration)'=='Release-NoCommands'">LowLevelCustomItemsAPI.LabAPI</AssemblyName>
+        <AssemblyName Condition="'$(Configuration)'=='EXILED-NoCommands'">LowLevelCustomItemsAPI.EXILED</AssemblyName>
         <Platforms>AnyCPU</Platforms>
         <NoStdLib>true</NoStdLib>
     </PropertyGroup>
@@ -35,5 +37,18 @@
         <Reference Include="UnityEngine.CoreModule" HintPath="$(SL_REFERENCES)\UnityEngine.CoreModule.dll" Private="False" />
         <Reference Include="UnityEngine.PhysicsModule" HintPath="$(SL_REFERENCES)\UnityEngine.PhysicsModule.dll" Private="False" />
         <Reference Include="UnityEngine.AudioModule" HintPath="$(SL_REFERENCES)\UnityEngine.AudioModule.dll" Private="False" />
+    </ItemGroup>
+
+    <!-- Ensure EXILED code path is used for EXILED and EXILED-NoCommands configurations -->
+    <PropertyGroup Condition="'$(Configuration)' == 'EXILED'">
+        <DefineConstants>$(DefineConstants);EXILED</DefineConstants>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)' == 'EXILED-NoCommands'">
+        <DefineConstants>$(DefineConstants);EXILED</DefineConstants>
+    </PropertyGroup>
+
+    <!-- Exclude Commands folder from NoCommands configurations -->
+    <ItemGroup Condition="'$(Configuration)' == 'Release-NoCommands' Or '$(Configuration)' == 'EXILED-NoCommands'">
+        <Compile Remove="Commands\**\*.cs" />
     </ItemGroup>
 </Project>
