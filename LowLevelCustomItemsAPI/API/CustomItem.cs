@@ -102,33 +102,52 @@ public abstract class CustomItem
 	public static bool TryGet<T>([NotNullWhen(true)] out T? item) where T : CustomItem => (item = Get<T>()) != null;
 
 	/// <summary>
+	/// Gets the registered custom item instance associated with the specified serial number.
+	/// </summary>
+	/// <param name="serial">The serial number to retrieve the custom item for.</param>
+	/// <returns>The registered custom item instance associated with the serial, or null if it is not found.</returns>
+	public static CustomItem? Get(int serial) =>
+		RegisteredSerials.Values
+						 .SelectMany(x => x.Values)
+						 .OfType<CustomItem>()
+						 .FirstOrDefault(x => x.Serials.Contains(serial));
+
+	/// <summary>
+	/// Attempts to retrieve the registered custom item instance associated with the specified serial number.
+	/// </summary>
+	/// <param name="serial">The serial number to retrieve the custom item for.</param>
+	/// <param name="item">The registered custom item instance if it is found, or null if it is not found.</param>
+	/// <returns>True if the custom item associated with the serial is successfully retrieved, otherwise false.</returns>
+	public static bool TryGet(int serial, [NotNullWhen(true)] out CustomItem? item) => (item = Get(serial)) != null;
+
+	/// <summary>
 	/// Checks if the specified serial is registered for any custom item.
 	/// </summary>
-	/// <param name="serial">The serial number to check for registration.</param>
+	/// <param name="serial">The serial to check.</param>
 	/// <returns>True if the serial is registered to any custom item, otherwise false.</returns>
 	public static bool IsItem(int serial) => RegisteredSerials.Values.Any(x => x.ContainsKey(serial));
 
 	/// <summary>
-	/// Checks if a given serial is associated with the specified custom item.
+	/// Checks if the given serial is registered for a specific custom item.
 	/// </summary>
-	/// <param name="item">The custom item to check for the association.</param>
-	/// <param name="serial">The serial number to check for registration.</param>
+	/// <param name="item">The custom item.</param>
+	/// <param name="serial">The serial to check.</param>
 	/// <returns>True if the serial is registered to the specified custom item, otherwise false.</returns>
 	public static bool Check(CustomItem item, int serial) =>
 		RegisteredSerials.TryGetValue(item, out Dictionary<int, object?>? map) && map.ContainsKey(serial);
 
 	/// <summary>
-	/// Checks if a given serial is present in the registered serials.
+	/// Checks if the specified serial is registered for any custom item.
 	/// </summary>
 	/// <param name="serial">The serial to check.</param>
 	/// <param name="data">The data associated with the serial.
 	/// This will be null if there is no data associated with it.</param>
-	/// <returns>True if the serial exists in the registered serials, otherwise false.</returns>
+	/// <returns>True if the serial is registered to any custom item, otherwise false.</returns>
 	public static bool IsItem(int serial, out object? data)
 	{
 		data = null;
-		foreach (KeyValuePair<CustomItem, Dictionary<int, object?>> pair in RegisteredSerials)
-			if (pair.Value.TryGetValue(serial, out data))
+		foreach (KeyValuePair<CustomItem, Dictionary<int, object?>> kvp in RegisteredSerials)
+			if (kvp.Value.TryGetValue(serial, out data))
 				return true;
 		return false;
 	}
@@ -220,7 +239,7 @@ public abstract class CustomItem
 	/// <summary>
 	/// A collection of serials that are registered to the custom item.
 	/// </summary>
-	public virtual HashSet<int> Serials => CustomItem.RegisteredSerials[this].Keys.ToHashSet();
+	public virtual HashSet<int> Serials => RegisteredSerials[this].Keys.ToHashSet();
 
 	/// <summary>
 	/// Checks if the specified serial is registered for the custom item and retrieves associated data.
@@ -229,7 +248,7 @@ public abstract class CustomItem
 	/// <param name="data">The data associated with the item.
 	/// This will be null if this custom item it is registered to is not a <see cref="CustomItem{T}"/>.</param>
 	/// <returns>True if the serial is registered for the custom item, otherwise false.</returns>
-	public virtual bool Check(int serial, out object? data) => CustomItem.Check(this, serial, out data);
+	public virtual bool Check(int serial, out object? data) => Check(this, serial, out data);
 
 	/// <summary>
 	/// Checks if the specified serial is registered for the custom item.
@@ -287,5 +306,5 @@ public abstract class CustomItem<T> : CustomItem
 	/// </summary>
 	/// <param name="serial">The serial number to register.</param>
 	/// <param name="data">The data to associate with the serial.</param>
-	public virtual void Register(int serial, T data) => CustomItem.RegisterSerial(this, serial, data);
+	public virtual void Register(int serial, T data) => RegisterSerial(this, serial, data);
 }
