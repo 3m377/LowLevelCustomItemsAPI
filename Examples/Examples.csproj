@@ -10,7 +10,7 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <DebugType>embedded</DebugType>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <Configurations>Debug;Release;EXILED</Configurations>
+        <Configurations>Debug;Release;EXILED;Release-NoCommands;EXILED-NoCommands</Configurations>
         <Platforms>AnyCPU</Platforms>
     </PropertyGroup>
 

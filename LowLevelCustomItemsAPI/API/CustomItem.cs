@@ -18,7 +18,7 @@ using LabApi.Events.Handlers;
 /// </summary>
 public abstract class CustomItem
 {
-	internal static Dictionary<Assembly, Dictionary<Type, CustomItem>> Items { get; } = [];
+	public static Dictionary<Assembly, Dictionary<Type, CustomItem>> Items { get; } = [];
 	internal static Dictionary<CustomItem, Dictionary<int, object?>> RegisteredSerials { get; } = [];
 
 	internal static void Initialize()
