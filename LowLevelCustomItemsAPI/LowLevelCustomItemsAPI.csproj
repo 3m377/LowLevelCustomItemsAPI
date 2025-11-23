@@ -18,9 +18,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ExMod.Exiled" Version="9.8.1" />
+        <PackageReference Include="ExMod.Exiled" Version="9.10.2" />
         <PackageReference Include="Lib.Harmony" Version="2.3.6" />
-        <PackageReference Include="Northwood.LabAPI" Version="1.1.1" />
+        <PackageReference Include="Northwood.LabAPI" Version="1.1.4" />
         <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3" PrivateAssets="all" ExcludeAssets="runtime" />
     </ItemGroup>
 
