@@ -40,7 +40,7 @@ public class ImpactGrenade : CustomItem
 			return;
 
 		timedGrenade.RemainingTime = 1000;
-		ev.Projectile.Base.gameObject.AddComponent<ImpactGrenadeHandler>().Init(ev.Player, timedGrenade);
+		ev.Projectile.GameObject.AddComponent<ImpactGrenadeHandler>().Init(ev.Player, timedGrenade);
 	}
 
 	public override Item GiveDefault(Player player, object data)
@@ -67,7 +67,7 @@ public class ImpactGrenade : CustomItem
 		{
 			if (!_initialized ||
 				collision.gameObject == _owner.GameObject ||
-				collision.gameObject == _grenade.Base.gameObject)
+				collision.gameObject == _grenade.GameObject)
 				return;
 
 			Timing.CallDelayed(0.4f, () => _grenade.FuseEnd());
