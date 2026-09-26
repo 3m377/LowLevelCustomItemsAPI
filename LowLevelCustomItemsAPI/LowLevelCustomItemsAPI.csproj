@@ -20,9 +20,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="ExMod.Exiled" Version="9.10.2" />
-        <PackageReference Include="Lib.Harmony" Version="2.3.6" />
-        <PackageReference Include="Northwood.LabAPI" Version="1.1.4" />
+        <PackageReference Include="ExMod.Exiled" Version="9.14.2" />
+        <PackageReference Include="Lib.Harmony" Version="2.4.2" />
+        <PackageReference Include="Northwood.LabAPI" Version="1.1.7" />
         <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3" PrivateAssets="all" ExcludeAssets="runtime" />
     </ItemGroup>
 
@@ -51,4 +51,16 @@
     <ItemGroup Condition="'$(Configuration)' == 'Release-NoCommands' Or '$(Configuration)' == 'EXILED-NoCommands'">
         <Compile Remove="Commands\**\*.cs" />
     </ItemGroup>
+    
+    <!-- linux shit -->
+    <PropertyGroup>
+        <AssemblySearchPaths>
+            {CandidateAssemblyFiles};
+            $(SL_REFERENCES);
+            {HintPathFromItem};
+            {RawFileName}
+        </AssemblySearchPaths>
+
+        <FrameworkPathOverride>$(SL_REFERENCES)</FrameworkPathOverride>
+    </PropertyGroup>
 </Project>
